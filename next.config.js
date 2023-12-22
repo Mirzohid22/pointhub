@@ -2,7 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["apiv2.allsportsapi.com"],
+    // domains: ["apiv2.allsportsapi.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "apiv2.allsportsapi.com",
+        pathname: "/**",
+      },
+    ],
   },
 };
 

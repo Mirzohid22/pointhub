@@ -10,7 +10,7 @@ import useLeague from "@/components/common/leagues/hooks/useLeague";
 export default function Home() {
   const [opened, { toggle }] = useDisclosure();
   const { leagueName, setLeagueName, leagueKey, setLeagueKey } = useLeague();
-
+  
   return (
     <AppShell
       header={{ height: 60 }}
@@ -19,11 +19,15 @@ export default function Home() {
         breakpoint: "sm",
         collapsed: { desktop: true, mobile: !opened },
       }}
-      padding={{ xs: "xs", sm: "md" }}
+      padding={{ xs: "xs", sm: "sm" }}
     >
       <Header opened={opened} toggle={toggle} />
       <Navbar />
-      <AppShell.Main>
+      <AppShell.Main
+        style={{
+          paddingTop: 60,
+        }}
+      >
         <Center h={100}>
           <Leagues setLeagueName={setLeagueName} setLeagueKey={setLeagueKey} />
         </Center>
