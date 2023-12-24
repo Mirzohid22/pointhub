@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   Container,
   Table,
@@ -9,38 +10,28 @@ import {
   Center,
 } from "@mantine/core";
 import type Standing from "@/types/standing";
+import getStandings from "./service/getStandings";
 
 interface StandingsProps {
   leagueName: string;
   leagueKey: number;
 }
 
-const API = process.env.NEXT_PUBLIC_API_URL as string;
-const KEY = process.env.NEXT_PUBLIC_API_KEY as string;
-
 const Standings: React.FC<StandingsProps> = ({ leagueName, leagueKey }) => {
-  const [rows, setRow] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  useEffect(() => {
-    const fetchStandings = async () => {
-      setLoading(true);
-      const params = new URLSearchParams();
-      params.append("met", "Standings");
-      params.append("leagueId", leagueKey.toString());
-      params.append("APIkey", KEY.toString());
-      const response = await fetch(`${API}?${params.toString()}`, {
-        method: "GET",
-      });
-      const { success, result } = await response.json();
-      if (success) {
-        setRow(result.total);
-      }
-      setLoading(false);
-    };
-    fetchStandings();
-  }, [leagueKey]);
+  const { isError, isLoading, data } = useQuery({
+    queryKey: ["standings", leagueKey],
+    queryFn: () => getStandings(leagueKey),
+    staleTime: 2000,
+  });
 
-  if (loading)
+  if (isError)
+    return (
+      <Center w="100%" h="100%">
+        <Text>Something went wrong</Text>
+      </Center>
+    );
+
+  if (isLoading)
     return (
       <Center w="100%" h="100%">
         <Loader color="blue" />
@@ -71,8 +62,8 @@ const Standings: React.FC<StandingsProps> = ({ leagueName, leagueKey }) => {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {rows.length &&
-            rows.map((club: Standing) => {
+          {data?.standings.length &&
+            data.standings.map((club: Standing) => {
               return (
                 <Table.Tr key={club.team_key}>
                   <Table.Td>{club.standing_place}</Table.Td>
