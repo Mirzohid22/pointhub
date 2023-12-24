@@ -1,6 +1,7 @@
 "use client";
 import { AppShell, Burger, Group, UnstyledButton, Image } from "@mantine/core";
 import NextImage from "next/image";
+import Link from "next/link";
 import pointHubLogo from "../../public/pointhub.svg";
 import githubLogo from "../../public/brand-github.svg";
 import classes from "./header.module.css";
@@ -24,10 +25,20 @@ export function Header({ opened, toggle }: HeaderProps) {
             radius="sm"
           />
           <Group ml="xl" gap={0} visibleFrom="sm">
-            <UnstyledButton className={classes.control}>
+            <UnstyledButton
+              component="a"
+              href="https://t.me/mirzohid22me"
+              target="_blank"
+              className={classes.control}
+            >
               Contact
             </UnstyledButton>
-            <UnstyledButton className={classes.control}>
+            <UnstyledButton
+              component="a"
+              href="https://github.com/Mirzohid22/pointhub"
+              target="_blank"
+              className={classes.control}
+            >
               <Image
                 component={NextImage}
                 src={githubLogo}
@@ -35,7 +46,7 @@ export function Header({ opened, toggle }: HeaderProps) {
                 height={24}
                 width={24}
                 radius="sm"
-                />
+              />
             </UnstyledButton>
           </Group>
         </Group>
