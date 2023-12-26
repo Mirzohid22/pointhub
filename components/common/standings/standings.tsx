@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import type Standing from "@/types/standing";
 import getStandings from "./service/getStandings";
+import Issue from "../issue/issue";
 
 interface StandingsProps {
   leagueName: string;
@@ -37,6 +38,10 @@ const Standings: React.FC<StandingsProps> = ({ leagueName, leagueKey }) => {
         <Loader color="blue" />
       </Center>
     );
+
+  if (!data?.success) {
+    return <Issue />;
+  }
   return (
     <Container size={"md"}>
       <Table

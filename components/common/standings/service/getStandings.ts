@@ -15,8 +15,10 @@ async function getStandings(leagueKey: number): Promise<StandingsResponse> {
     const response = await fetch(`${API}?${params.toString()}`, {
         method: 'GET',
     });
-    const { success, result } = await response.json();
-    return {success, standings: result.total};
+    const { success = false, result } = await response.json();
+    if (success) return { success, standings: result.total };
+
+    return { success, standings: [] };
 }
 
 export default getStandings;
