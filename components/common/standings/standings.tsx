@@ -12,6 +12,7 @@ import {
 import type Standing from "@/types/standing";
 import getStandings from "./service/getStandings";
 import Issue from "../issue/issue";
+import DynamicPosition from "./dynamicPosition";
 
 interface StandingsProps {
   leagueName: string;
@@ -71,7 +72,12 @@ const Standings: React.FC<StandingsProps> = ({ leagueName, leagueKey }) => {
             data.standings.map((club: Standing) => {
               return (
                 <Table.Tr key={club.team_key}>
-                  <Table.Td>{club.standing_place}</Table.Td>
+                  <Table.Td>
+                    <DynamicPosition
+                      position={club.standing_place}
+                      tooltip={club.standing_place_type}
+                    />
+                  </Table.Td>
                   <Table.Td>
                     <Group align="center" justify="start">
                       <Avatar src={club.team_logo} alt={club.league_season} />
@@ -94,5 +100,4 @@ const Standings: React.FC<StandingsProps> = ({ leagueName, leagueKey }) => {
     </Container>
   );
 };
-
 export default Standings;
