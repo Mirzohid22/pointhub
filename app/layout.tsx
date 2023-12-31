@@ -1,7 +1,6 @@
 import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import { theme } from "../theme";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -27,7 +26,7 @@ export default function RootLayout({ children }: { children: any }) {
         <meta name="google" translate="no" />
       </head>
       <body className={inter.className}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <MantineProvider defaultColorScheme="auto">{children}</MantineProvider>
       </body>
     </html>
   );

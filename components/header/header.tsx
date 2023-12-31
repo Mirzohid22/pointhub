@@ -1,9 +1,10 @@
 "use client";
 import { AppShell, Burger, Group, UnstyledButton, Image } from "@mantine/core";
 import NextImage from "next/image";
-import Link from "next/link";
 import pointHubLogo from "../../public/pointhub.svg";
+import pointHubLogoDark from "../../public/pointhub-dark.svg";
 import githubLogo from "../../public/brand-github.svg";
+import githubLogoDark from "../../public/brand-github-dark.svg";
 import classes from "./header.module.css";
 
 interface HeaderProps {
@@ -17,8 +18,18 @@ export function Header({ opened, toggle }: HeaderProps) {
         <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
         <Group justify="space-between" style={{ flex: 1 }}>
           <Image
+            darkHidden
             component={NextImage}
             src={pointHubLogo}
+            alt="PointHub Logo"
+            height={40}
+            width={40}
+            radius="sm"
+          />
+          <Image
+            lightHidden
+            component={NextImage}
+            src={pointHubLogoDark}
             alt="PointHub Logo"
             height={40}
             width={40}
@@ -40,8 +51,18 @@ export function Header({ opened, toggle }: HeaderProps) {
               className={classes.control}
             >
               <Image
+                darkHidden
                 component={NextImage}
                 src={githubLogo}
+                alt="GitHub Logo"
+                height={24}
+                width={24}
+                radius="sm"
+              />
+              <Image
+                lightHidden
+                component={NextImage}
+                src={githubLogoDark}
                 alt="GitHub Logo"
                 height={24}
                 width={24}
