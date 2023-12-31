@@ -13,6 +13,9 @@ const getColor = (position: number): string => {
   if (position === 5) {
     return "yellow";
   }
+  if (position > 17) {
+    return "red";
+  }
   return "gray";
 };
 
@@ -21,13 +24,13 @@ const DynamicPosition: React.FC<DynamicPositionProps> = ({
   tooltip,
 }) => {
   const [opened, { close, open }] = useDisclosure(false);
-  if (position > 5) {
+  if (position > 5 && position < 18) {
     return (
       <Button
         color={getColor(position)}
         size="xs"
         radius="xl"
-        variant="outline"
+        variant="light"
         style={{ pointerEvents: "none" }}
       >
         {position}
@@ -37,7 +40,7 @@ const DynamicPosition: React.FC<DynamicPositionProps> = ({
   return (
     <Popover
       width={200}
-      position="bottom"
+      position="top-end"
       withArrow
       shadow="md"
       opened={opened}
@@ -49,7 +52,7 @@ const DynamicPosition: React.FC<DynamicPositionProps> = ({
           color={getColor(position)}
           size="xs"
           radius="xl"
-          variant="outline"
+          variant="light"
         >
           {position}
         </Button>

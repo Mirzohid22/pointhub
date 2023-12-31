@@ -24,6 +24,7 @@ export default function RootLayout({ children }: { children: any }) {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
+        <meta name="google" translate="no" />
       </head>
       <body className={inter.className}>
         <MantineProvider theme={theme}>{children}</MantineProvider>

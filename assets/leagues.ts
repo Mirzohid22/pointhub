@@ -9,7 +9,7 @@ interface League {
 const leagues: League[] = [
     {
         league_key: 152,
-        league_name: "Premier League",
+        league_name: "The EPL",
         country_key: 44,
         country_name: "England",
         league_logo: "https://apiv2.allsportsapi.com/logo/logo_leagues/152_premier-league.png",
