@@ -1,5 +1,6 @@
 "use client";
 import { AppShell, UnstyledButton } from "@mantine/core";
+import ThemeSwitcher from "../common/themeSwitcher/themeSwitcher";
 import classes from "./navbar.module.css";
 
 export function Navbar() {

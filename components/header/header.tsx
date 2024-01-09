@@ -1,6 +1,8 @@
 "use client";
 import { AppShell, Burger, Group, UnstyledButton, Image } from "@mantine/core";
 import NextImage from "next/image";
+import ThemSwitcher from "../common/themeSwitcher/themeSwitcher";
+//assets
 import pointHubLogo from "../../public/pointhub.svg";
 import pointHubLogoDark from "../../public/pointhub-dark.svg";
 import githubLogo from "../../public/brand-github.svg";
@@ -69,6 +71,10 @@ export function Header({ opened, toggle }: HeaderProps) {
                 radius="sm"
               />
             </UnstyledButton>
+            <ThemSwitcher />
+          </Group>
+          <Group hiddenFrom="sm">
+            <ThemSwitcher />
           </Group>
         </Group>
       </Group>
